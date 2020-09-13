@@ -1,0 +1,1 @@
+*/3 * * * * /opt/factorio/scripts/sync-saves.sh >> /opt/factorio/factorio-sync.log 2>&1

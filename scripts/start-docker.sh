@@ -1,0 +1,1 @@
+docker run --name factorio-server --rm -it --network=host titaniteslab/factorio-server:0.1

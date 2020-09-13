@@ -1,0 +1,8 @@
+saves
+mods
+bin
+data/*
+
+!data/server-settings.json
+!data/map-settings.json
+!data/map-gen-settings.json

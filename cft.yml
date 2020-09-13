@@ -1,0 +1,28 @@
+FargateTask: 
+  Type: AWS::ECS::TaskDefinition
+  Properties: 
+    ContainerDefinitions: 
+      - Name: 
+          Ref: factorio1
+          Cpu: 2048
+          Memory: 8192
+        Image: titaniteslab/factorio-server:0.1
+        PortMappings: 
+          - ContainerPort: 34197
+            HostPort: 34197
+            Protocol: udp
+        MountPoints: 
+          - SourceVolume: factorio1
+            ContainerPath: /opt/factorio/saves
+        Essential: true
+    Volumes: 
+      - Host: 
+          SourcePath: /var/lib/docker/vfs/dir/
+        Name: factorio1
+
+        
+# "networkConfiguration":
+#   "awsvpcConfiguration":
+#     "assignPublicIp": "ENABLED",
+#     "securityGroups": [ "sg-12345678" ],
+#     "subnets": [ "subnet-12345678" ]
