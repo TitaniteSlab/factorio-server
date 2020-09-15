@@ -4,15 +4,15 @@ EXPOSE 34197
 USER root
 WORKDIR /opt/factorio
 
+RUN useradd -U -m factorio
+RUN chown -R factorio:factorio /opt/factorio
+
 RUN dnf install -y unzip crontabs
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
-
-RUN useradd -U -m factorio
-RUN touch /opt/factorio/factorio-sync.log
-RUN chown -R factorio:factorio /opt/factorio
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install && \
+    rm -rf awscliv2.zip aws
 
 COPY --chown=factorio:factorio bin bin
 COPY --chown=factorio:factorio data data

@@ -2,4 +2,4 @@
 
 set -e
 
-docker build --network=host -t titaniteslab/factorio-server:0.1 .
+docker build --network=host -t titaniteslab/factorio-server:latest .

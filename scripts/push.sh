@@ -1,2 +1,2 @@
-docker tag titaniteslab/factorio-server:0.1 titaniteslab/factorio-server:0.1
-docker push titaniteslab/factorio-server:0.1
+docker tag titaniteslab/factorio-server:latest titaniteslab/factorio-server:latest
+docker push titaniteslab/factorio-server:latest
