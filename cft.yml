@@ -112,9 +112,11 @@ Resources:
       ContainerDefinitions:
         - Name: factorio1
           Image: titaniteslab/factorio-server:latest
+          RepositoryCredentials:
+            CredentialsParameter: arn:aws:secretsmanager:us-west-2:218402493773:secret:Factorio1/DockerHub-pGlPhC
           Command:
             - ./scripts/start.sh
-            - A-13
+            - JoCo1
           PortMappings: 
             - ContainerPort: 34197
               HostPort: 34197
