@@ -67,6 +67,16 @@ Resources:
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy
+      Policies:
+        - PolicyName: Factorio1ExecutionPolicy
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                Resource: !Sub "arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:Factorio1/DockerHub-pGlPhC"
+                      
   TaskRole:
     Type: AWS::IAM::Role
     Properties:
@@ -78,7 +88,7 @@ Resources:
               Service: ecs-tasks.amazonaws.com
             Action: sts:AssumeRole
       Policies:
-        - PolicyName: Factorio1Policy
+        - PolicyName: Factorio1TaskPolicy
           PolicyDocument:
             Version: 2012-10-17
             Statement:
@@ -100,8 +110,8 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     DependsOn: LogGroup
     Properties:
-      Cpu: 2048
-      Memory: 8GB
+      Cpu: 4096
+      Memory: 12GB
       NetworkMode: awsvpc
       RequiresCompatibilities:
         - FARGATE
@@ -113,10 +123,10 @@ Resources:
         - Name: factorio1
           Image: titaniteslab/factorio-server:latest
           RepositoryCredentials:
-            CredentialsParameter: arn:aws:secretsmanager:us-west-2:218402493773:secret:Factorio1/DockerHub-pGlPhC
+            CredentialsParameter: Factorio1/DockerHub
           Command:
             - ./scripts/start.sh
-            - JoCo1
+            - Spaghetti1
           PortMappings: 
             - ContainerPort: 34197
               HostPort: 34197
